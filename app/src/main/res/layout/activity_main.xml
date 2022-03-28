@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/spoofSmsCodeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="spoofSmsCode"
+        android:text="Spoof sms code"
+        app:layout_constraintTop_toBottomOf="@+id/startMainActivityButton"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <Button
+        android:id="@+id/startRegionActivityButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:onClick="startRegionActivity"
+        android:text="Start eldorado Region Activity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stealFileButton" />
+
+    <Button
+        android:id="@+id/startMainActivityButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:onClick="startMainActivity"
+        android:text="Start eldorado MainActivity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startRegionActivityButton" />
+
+    <Button
+        android:id="@+id/registerSmsVerificationReceiverButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="registerSmsVerificationReceiver"
+        android:text="Register Receiver"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/unregisterSmsVerificationReceiverButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:onClick="unregisterSmsVerificationReceiver"
+        android:text="Unregister Receiver"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/writeToFileButton" />
+
+    <Button
+        android:id="@+id/writeToFileButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:onClick="writeToFile"
+        android:text="Show full paths of getExternalStorageDirectory() file"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spoofSmsCodeButton" />
+
+    <Button
+        android:id="@+id/stealExternalFileButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:onClick="stealExternalFile"
+        android:text="Steal file from external storage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/unregisterSmsVerificationReceiverButton" />
+
+    <Button
+        android:id="@+id/stealInternalFileButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="stealInternalFile"
+        android:text="Steal file from internal storage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stealExternalFileButton" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
