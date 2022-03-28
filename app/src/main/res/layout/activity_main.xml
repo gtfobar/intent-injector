@@ -22,8 +22,8 @@
         android:layout_height="wrap_content"
         android:onClick="spoofSmsCode"
         android:text="Spoof sms code"
-        app:layout_constraintTop_toBottomOf="@+id/startMainActivityButton"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startMainActivityButton" />
 
     <Button
         android:id="@+id/startRegionActivityButton"
@@ -39,7 +39,6 @@
         android:id="@+id/startMainActivityButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:onClick="startMainActivity"
         android:text="Start eldorado MainActivity"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +57,6 @@
         android:id="@+id/unregisterSmsVerificationReceiverButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:onClick="unregisterSmsVerificationReceiver"
         android:text="Unregister Receiver"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +66,6 @@
         android:id="@+id/writeToFileButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:onClick="writeToFile"
         android:text="Show full paths of getExternalStorageDirectory() file"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +75,6 @@
         android:id="@+id/stealExternalFileButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:onClick="stealExternalFile"
         android:text="Steal file from external storage"
         app:layout_constraintStart_toStartOf="parent"
