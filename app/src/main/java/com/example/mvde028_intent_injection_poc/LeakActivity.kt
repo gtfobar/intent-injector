@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.io.InputStream
 
-
 class LeakActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +17,5 @@ class LeakActivity : AppCompatActivity() {
         }.also{
             Toast.makeText(this, it, Toast.LENGTH_LONG).show()
         } // we can now do whatever we like with this stream, e.g. send it to a remote server
-
     }
 }
