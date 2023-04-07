@@ -1,7 +1,12 @@
 <resources>
-    <string name="app_name">MVDE028_intent_injection_poc</string>
-    <string name="start_eldorado_region_activity">Запустить RegionActivity</string>
-    <string name="sdcard_android_data_ru_mvm_eldo">Извлечь из /sdcard/Android/data/ru.mvm.eldo</string>
-    <string name="data_data_ru_mvm_eldo_files">Извлечь из /data/data/ru.mvm.eldo/files</string>
+    <string name="app_name">Intent injector</string>
     <string name="filename_hint">Имя файла</string>
+    <string name="welcome_peasant_enter_the_code">Welcome peasant, enter the code.</string>
+    <string name="submit_sms_code">Submit</string>
+    <string name="the_code_please">The code, please</string>
+    <string name="default_package_name">bar.gtfo.bankintent</string>
+    <string name="default_file_name">phone.txt</string>
+    <string name="default_class_name">bar.gtfo.bankintent.InsecureWebViewActivity</string>
+    <string name="set_target">Set targets</string>
+    <string name="inject">Inject</string>
 </resources>

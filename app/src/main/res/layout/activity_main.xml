@@ -4,106 +4,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="bar.gtfo.intent_injector.MainActivity">
+
 
     <Button
-        android:id="@+id/spoofSmsCodeButton"
-        android:layout_width="match_parent"
+        android:id="@+id/start_listen_to_sms_button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:onClick="spoofSmsCode"
-        android:text="Spoof sms code"
+        android:text="Initialize sms listener"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startMainActivityButton"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/startRegionActivityButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="startRegionActivity"
-        android:text="@string/start_eldorado_region_activity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerSmsVerificationReceiverButton" />
-
-    <Button
-        android:id="@+id/startMainActivityButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="startMainActivity"
-        android:text="Start eldorado MainActivity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startRegionActivityButton"
-        android:visibility="gone" />
-
-    <Button
-        android:id="@+id/registerSmsVerificationReceiverButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="registerSmsVerificationReceiver"
-        android:text="Register Receiver"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone" />
-
-    <Button
-        android:id="@+id/unregisterSmsVerificationReceiverButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="unregisterSmsVerificationReceiver"
-        android:text="Unregister Receiver"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/writeToFileButton"
-        android:visibility="gone" />
-
-    <Button
-        android:id="@+id/writeToFileButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="writeToFile"
-        android:text="Show full paths of getExternalStorageDirectory() file"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spoofSmsCodeButton"
-        android:visibility="gone" />
 
     <EditText
-        android:id="@+id/filenameEdit"
-        android:layout_width="match_parent"
+        android:id="@+id/class_name_edit_text"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/filename_hint"
+        android:text="@string/default_class_name"
         android:minHeight="48dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/unregisterSmsVerificationReceiverButton"/>
+        app:layout_constraintTop_toBottomOf="@+id/start_listen_to_sms_button" />
+
+    <EditText
+        android:id="@+id/package_name_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/default_package_name"
+        android:minHeight="48dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/class_name_edit_text" />
+
+    <EditText
+        android:id="@+id/file_name_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/default_file_name"
+        android:minHeight="48dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/package_name_edit_text" />
 
     <Button
-        android:id="@+id/stealExternalFileButton"
-        android:layout_width="match_parent"
+        android:id="@+id/set_target_button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:onClick="stealExternalFile"
-        android:text="@string/sdcard_android_data_ru_mvm_eldo"
+        android:text="@string/set_target"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filenameEdit"
-        android:visibility="gone" />
+        app:layout_constraintTop_toBottomOf="@+id/file_name_edit_text" />
 
     <Button
-        android:id="@+id/stealInternalFileButton"
-        android:layout_width="match_parent"
+        android:id="@+id/inject_button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:onClick="stealInternalFile"
-        android:text="@string/data_data_ru_mvm_eldo_files"
+        android:text="@string/inject"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stealExternalFileButton" />
+        app:layout_constraintTop_toBottomOf="@+id/set_target_button" />
 
-
-
-    <Button
-        android:id="@+id/showAndroidIdButtion"
-        android:layout_width="match_parent"
+    <Spinner
+        android:id="@+id/mode_spinner"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:onClick="showAndroidId"
-        android:text="Show android.provider.Settings.Secure.ANDROID_ID"
-        app:layout_constraintTop_toBottomOf="@+id/stealInternalFileButton"
-        tools:layout_editor_absoluteX="-40dp"
-        android:visibility="gone" />
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:label="label"
+        app:layout_constraintTop_toBottomOf="@+id/inject_button" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,21 +1,20 @@
-package com.example.mvde028_intent_injection_poc
+package bar.gtfo.intent_injector
 
-import android.content.Intent.getIntent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import java.io.InputStream
 
-class LeakActivity : AppCompatActivity() {
+class PhishingActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_leak)
+        setContentView(R.layout.activity_phishing)
+
         intent.data?.let {
             contentResolver.openInputStream(it)
         }?.bufferedReader()?.run {
             readText()
-        }.also{
+        }?.also{
             Toast.makeText(this, it, Toast.LENGTH_LONG).show()
-        } // we can now do whatever we like with this stream, e.g. send it to a remote server
+        }
     }
 }

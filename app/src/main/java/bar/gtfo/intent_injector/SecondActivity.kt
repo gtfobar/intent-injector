@@ -1,9 +1,10 @@
-package com.example.mvde028_intent_injection_poc
+package bar.gtfo.intent_injector
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import bar.gtfo.intent_injector.R
 import com.google.android.gms.auth.api.phone.SmsRetriever
 
 class SecondActivity: AppCompatActivity() {
